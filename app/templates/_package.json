@@ -1,5 +1,40 @@
 {
-  "name": "package",
+  "name": "<%= slugname %>",
   "version": "0.0.0",
-  "dependencies": {}
+  "description": "<%= props.description %>",<% if (props.homepage) { %>
+  "homepage": "<%= props.homepage %>",<%}%>
+  "bugs": "<%= repoUrl %>/issues",
+  "license": "<%= props.license %>",
+  "main": "index.js",
+  "author": "<%= props.authorName %> <<%= props.authorEmail %>>",
+  "files": [
+    "index.js",
+    "lib",<% if (props.cli) { %>
+    "bin",<% } %>
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "<%= repoUrl %>"
+  },<% if (props.cli) { %>
+  "bin": "./bin/<%= slugname %>",<% } %>
+  "keywords": [
+    "<%= slugname %>"<% for (var i = 0; i < keywords.length; i++) { %>,
+    "<%= keywords[i] %>"<% } %>
+  ],
+  "dependencies": {<% if (props.cli) { %>
+    "meow": "^3.1.0"
+  <% } %>},
+  "devDependencies": {<% if (props.browser) { %>
+    "browserify": "^9.0.3",<% } %><% if (props.coveralls) { %>
+    "mocha-lcov-reporter": "^0.0.2",
+    "istanbul": "^0.3.8",
+    "coveralls": "^2.11.2",<% } %>
+    "mocha": "^2.2.1"
+  },
+  "scripts": {<% if (props.coveralls) { %>
+    "istanbul": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec test/**/*",
+    "coveralls:report": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
+    "coveralls": "npm run istanbul && npm run coveralls:report"<% } %>
+  }
 }
