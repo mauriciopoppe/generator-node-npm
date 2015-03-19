@@ -1,47 +1,59 @@
-# generator-node-npm [![Build Status](https://secure.travis-ci.org/maurizzzio/generator-node-npm.png?branch=master)](https://travis-ci.org/maurizzzio/generator-node-npm)
+# generator-node-npm [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url]
 
-> [Yeoman](http://yeoman.io) generator
+[![NPM][npm-image]][npm-url]
 
+> Create npm modules using npm as the build tool!
 
-## Getting Started
+## Install
 
-### What is Yeoman?
-
-Trick question. It's not a thing. It's this guy:
-
-![](http://i.imgur.com/JHaAlBJ.png)
-
-Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create.
-
-Not every new computer comes with a Yeoman pre-installed. He lives in the [npm](https://npmjs.org) package repository. You only have to ask for him once, then he packs up and moves into your hard drive. *Make sure you clean up, he likes new and shiny things.*
-
-```bash
-npm install -g yo
+```sh
+$ npm install -g generator-node-npm
 ```
 
-### Yeoman Generators
+## Usage
 
-Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-To install generator-node-npm from npm, run:
-
-```bash
-npm install -g generator-node-npm
+```sh
+$ yo node-npm
 ```
 
-Finally, initiate the generator:
+*Note that this template will generate files in the current directory, so be sure to change to a
+new directory first if you don't want to overwrite existing files.*
 
-```bash
-yo node-npm
-```
+## Tasks
 
-### Getting To Know Yeoman
+### 
 
-Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
+## Why?
 
-If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
+This project is heavily inspired by [this article by Keith Cirkel][stop-using-grunt-gulp] where he describes that
+the existing build system tools attempt to solve the problems that exist among them "covering up the inadequecies
+of the other tools while also surfacing their own".
 
+[James Halliday][https://www.npmjs.com/~substack] who is the creator of many awesome packages like `browserify`
+`tape` also wrote an article where he points out that the command `npm run` is "perfectly adequate for everything
+while maintaining a very tiny configuration footprint."
+
+### Articles to read:
+
+- http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/
+- http://blog.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/
+- http://substack.net/task_automation_with_npm_run
+- http://ponyfoo.com/articles/choose-grunt-gulp-or-npm
+
+### Inspiration projects
+
+- https://github.com/yeoman/generator-node/
+- https://github.com/youngmountain/generator-node-gulp
+- https://github.com/keithamus/npm-scripts-example's awesome `package.json` file
 
 ## License
 
-MIT
+2015 MIT © Mauricio Poppe
+
+[npm-image]: https://nodei.co/npm/generator-node-npm.png?downloads=true
+[npm-url]: https://npmjs.org/package/generator-node-npm
+[travis-image]: https://travis-ci.org/maurizzzio/generator-node-npm.svg?branch=master
+[travis-url]: https://travis-ci.org/maurizzzio/generator-node-npm
+[coveralls-image]: https://coveralls.io/repos/maurizzzio/generator-node-npm/badge.svg
+[coveralls-url]: https://coveralls.io/r/maurizzzio/generator-node-npm
+[stop-using-grunt-gulp]: http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/

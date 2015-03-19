@@ -2,7 +2,7 @@
 
 var assert = require('assert');
 
-var <%= safeSlugname %> = require('../index.js');
+var <%= safeSlugname %> = require('../');
 
 describe('<%= safeSlugname %>', function () {
 

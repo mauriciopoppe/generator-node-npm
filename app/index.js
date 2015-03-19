@@ -167,6 +167,11 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('test/index.js'),
         this
       );
+      this.fs.copyTpl(
+        this.templatePath('lib/awesome.js'),
+        this.destinationPath('lib/awesome.js'),
+        this
+      );
     },
 
     projectfiles: function () {
@@ -199,11 +204,24 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     cliFiles: function () {
-      if (this.cli) {
+      if (this.props.cli) {
         this.fs.copyTpl(
           this.templatePath('bin/cli.js'),
           this.destinationPath('bin/' + this.slugname),
           this
+        );
+      }
+    },
+
+    browserifyFiles: function () {
+      if (this.props.browser) {
+        this.fs.copy(
+          this.templatePath('assets/'),
+          this.destinationPath('assets/')
+        );
+        this.fs.copy(
+          this.templatePath('dist/'),
+          this.destinationPath('dist/')
         );
       }
     }
