@@ -53,7 +53,7 @@
 
     "lint-browser": "eslint assets/main.js assets/scripts/",
 
-    "serve": "./node_modules/.bin/browser-sync start --files \"dist/*.css\" --server \"dist\"",
+    "serve": "./node_modules/.bin/browser-sync start --files \"dist/*.css\" --server",
     <% } %>
     "lint": "eslint index.js lib test<% if (props.browser) { %> & npm run lint-browser<% } %>",
 

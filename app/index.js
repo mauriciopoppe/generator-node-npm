@@ -223,6 +223,10 @@ module.exports = yeoman.generators.Base.extend({
           this.templatePath('dist/'),
           this.destinationPath('dist/')
         );
+        this.fs.copy(
+          this.templatePath('index.html'),
+          this.destinationPath('index.html')
+        );
       }
     }
   },
