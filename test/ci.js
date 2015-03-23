@@ -8,21 +8,16 @@ var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
-var spawn = require('child_process').spawn;
+var exec = require('child_process').exec;
 
 process.env.CI && describe('node-npm on CI', function () {
-  this.timeout(50000);
+  this.timeout(60000);
 
-  function handleProcess(process, done) {
-    var testError = '';
-    process.stderr.on('data', function (data) {
-      testError += data.toString();
-    });
-    process.on('close', function (code) {
-      if (testError) {
-        return done(new Error('Project test failed:\n' + testError));
-      } else if (code > 0) {
-        return done(new Error('Child process exited with code ' + code));
+  function handleProcess(command, done) {
+    exec(command, function (err, stdout, stderr) {
+      if (err) return done(err);
+      if (stderr) {
+        return done(new Error(stderr));
       }
       done();
     });
@@ -38,9 +33,8 @@ process.env.CI && describe('node-npm on CI', function () {
     });
 
     it('executes some required scripts', function (done) {
-      var args = 'npm run lint && npm run test'.split(' ');
-      args.shift();
-      handleProcess(spawn('npm', args), done);
+      var command = 'npm run lint && npm run test';
+      handleProcess(command, done);
     });
   });
 
@@ -56,27 +50,25 @@ process.env.CI && describe('node-npm on CI', function () {
     });
 
     it('executes some required scripts', function (done) {
-      var args = 'npm run lint && npm run test && chmod u+x ./cli.js && ./cli.js'.split(' ');
-      args.shift();
-      handleProcess(spawn('npm', args), done);
+      var command = 'npm run lint && npm run test && chmod u+x ./cli.js && ./cli.js';
+      handleProcess(command, done);
     });
   });
 
-  describe('with coveralls', function () {
+  describe('with codeCoverage', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
         .withOptions({ 'skip-install': false })
         .withPrompt({
-          coveralls: true
+          codeCoverage: true
         })
         .on('end', done);
     });
 
     it('executes some required scripts', function (done) {
-      var args = 'npm run istanbul && npm run lint && npm run test'.split(' ');
-      args.shift();
-      handleProcess(spawn('npm', args), done);
+      var command = 'npm run istanbul';
+      handleProcess(command, done);
     });
   });
 });

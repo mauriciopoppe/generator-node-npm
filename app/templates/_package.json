@@ -33,7 +33,7 @@
     "mocha": "^2.2.1"
   },
   "scripts": {<% if (config.codeCoverage) { %>
-    "istanbul": "istanbul cover _mocha --report lcovonly -- -R spec test/",<% } %>
+    "istanbul": "istanbul cover _mocha --report lcovonly 2> /dev/null -- -R spec test/",<% } %>
     "lint": "eslint index.js lib test",
     "test": "mocha -R spec test/",
     "test:watch": "nodemon --watch lib --watch test --watch index.js --exec 'npm test'",

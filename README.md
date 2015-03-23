@@ -1,4 +1,4 @@
-# generator-node-npm [![Build Status][travis-image]][travis-url]  [![Coverage Status][coveralls-image]][coveralls-url]
+# generator-node-npm [![Build Status][travis-image]][travis-url]
 
 [![NPM][npm-image]][npm-url]
 
