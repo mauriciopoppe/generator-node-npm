@@ -1,6 +1,6 @@
 {
   "name": "generator-node-npm",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Create npm modules using `npm` as the build tool!",
   "license": "MIT",
   "main": "app/index.js",
