@@ -1,7 +1,7 @@
 {
   "name": "generator-node-npm",
   "version": "0.0.1",
-  "description": "Yeoman generator",
+  "description": "Create npm modules using `npm` as the build tool!",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "maurizzzio/generator-node-npm",

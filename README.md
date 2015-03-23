@@ -2,7 +2,7 @@
 
 [![NPM][npm-image]][npm-url]
 
-> Create npm modules using npm as the build system!
+> Create npm modules using `npm` as the build tool!
 
 ## Install
 
@@ -41,7 +41,18 @@ Generated with `tree -I node_modules -a` inside a generated project
 
 ## Available Tasks
 
-You can see the list of all available tasks running `npm run` on the generated project
+You can see the list of all available tasks running `npm run` on the generated project (below is 
+script generated with cli/codeCoverage modes turned on)
+
+```javascript
+  "scripts": {
+    "istanbul": "istanbul cover _mocha --report lcovonly 2> /dev/null -- -R spec test/",
+    "lint": "eslint index.js lib test",
+    "test": "mocha -R spec test/",
+    "test:watch": "nodemon --watch lib --watch test --watch index.js --exec 'npm test'",
+    "start": "npm run test:watch"
+  }
+```
 
 ### `npm start`
 
@@ -76,16 +87,16 @@ This project is heavily inspired by [this article by Keith Cirkel][stop-using-gr
 the existing build system tools attempt to solve the problems that exist among them "covering up the inadequacies
 of the other tools while also surfacing their own".
 
-[James Halliday][https://www.npmjs.com/~substack] who is the creator of many awesome packages like `browserify` and
+[James Halliday](https://www.npmjs.com/~substack) who is the creator of many awesome packages like `browserify` and
 `tape` also wrote an article where he points out that the command `npm run` is "perfectly adequate for everything
 while maintaining a very tiny configuration footprint."
 
 ### Articles to read:
 
-- http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/
-- http://blog.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/
-- http://substack.net/task_automation_with_npm_run
-- http://ponyfoo.com/articles/choose-grunt-gulp-or-npm
+- [Why we should stop using grunt][stop]
+- [How to use npm as a build tool][how-to]
+- [Task automation with run][task-automation]
+- [Choose grunt, gulp or npm][choose]
 
 ### Inspiration projects
 
@@ -111,3 +122,8 @@ are on `test/config.js`
 [coveralls-image]: https://coveralls.io/repos/maurizzzio/generator-node-npm/badge.svg
 [coveralls-url]: https://coveralls.io/r/maurizzzio/generator-node-npm
 [stop-using-grunt-gulp]: http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/
+
+[stop]: http://blog.keithcirkel.co.uk/why-we-should-stop-using-grunt/
+[how-to]: http://blog.keithcirkel.co.uk/how-to-use-npm-as-a-build-tool/
+[task-automation]: http://substack.net/task_automation_with_npm_run
+[choose]: http://ponyfoo.com/articles/choose-grunt-gulp-or-npm
