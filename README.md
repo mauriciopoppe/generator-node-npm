@@ -21,7 +21,7 @@ new directory first if you don't want to overwrite existing files.*
 
 ## Directory structure
 
-Generated with `tree -I node_modules -a` inside a generated project
+Generated with `yo node-npm` inside a new project (cli/codeCoverage modes turned on)
 
 ```
 .
@@ -41,8 +41,8 @@ Generated with `tree -I node_modules -a` inside a generated project
 
 ## Available Tasks
 
-You can see the list of all available tasks running `npm run` on the generated project (below is 
-script generated with cli/codeCoverage modes turned on)
+You can see the list of all available tasks running `npm run` on the generated project (below is the
+`scripts` field of `package.json` generated with the cli/codeCoverage modes turned on)
 
 ```javascript
   "scripts": {
@@ -108,8 +108,8 @@ while maintaining a very tiny configuration footprint."
 
 Run the tests with `npm test`
 
-Generate a sample output of the generator with `GENERATE_SANDBOX=true npm test`, generator options
-are on `test/config.js`
+Generate a sample output of the generator with `GENERATE_SANDBOX=true npm test` (example project is saved under
+`test/.tmp`), the generator options are on `test/config.js`
 
 ## License
 
