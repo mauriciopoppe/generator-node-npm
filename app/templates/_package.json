@@ -18,7 +18,7 @@
   },<% if (config.cli) { %>
   "bin": "./cli.js",<% } %>
   "keywords": [
-    "<%= slugname %>"<% for (var i = 0; i < keywords.length; i++) { %>,
+    "<%= slugname %>"<% for (var i = 0; i < keywords.length; i += 1) { %>,
     "<%= keywords[i] %>"<% } %>
   ],
   "dependencies": {<% if (config.cli) { %>
@@ -38,7 +38,7 @@
     "coveralls": "npm run istanbul && npm run coveralls-report",<% } %>
     "lint": "eslint index.js lib test",
     "test": "mocha -R spec test/",
-    "test:watch": "nodemon --watch lib --watch test --watch index.js --exec 'npm run istanbul'",
-    "start": "node index.js"
+    "test:watch": "nodemon --watch lib --watch test --watch index.js --exec 'npm test'",
+    "start": "npm run test:watch"
   }
 }

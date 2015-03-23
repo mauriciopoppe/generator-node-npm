@@ -11,6 +11,7 @@ var path = require('path');
       slugName
       safeSlugName
       repoUrl
+      keywords
       props
         description
         homepage
@@ -21,7 +22,6 @@ var path = require('path');
         keywords {Array}
       config
         cli {boolean}
-        browser {boolean}
         coveralls {boolean}
  */
 module.exports = yeoman.generators.Base.extend({
@@ -109,8 +109,8 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Key your keywords (comma to split)'
       }];
       this.prompt(prompts, function (props) {
-        if (props.githubUsername) {
-          this.repoUrl = props.githubUsername + '/' + this.slugname;
+        if (props.username) {
+          this.repoUrl = 'https://github.com/' + props.username + '/' + this.slugname;
         } else {
           this.repoUrl = 'user/repo';
         }
@@ -119,7 +119,7 @@ module.exports = yeoman.generators.Base.extend({
           .map(function (el) {
             return el.trim();
           })
-          .reduce(function (el) {
+          .filter(function (el) {
             return !!el;
           });
 

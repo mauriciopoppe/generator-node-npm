@@ -26,7 +26,6 @@ process.env.CI && describe('node-npm on CI', function () {
       }
       done();
     });
-
   }
 
   describe('with default options', function () {
