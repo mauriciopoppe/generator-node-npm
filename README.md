@@ -28,6 +28,7 @@ Generated with `tree -I node_modules -a` inside a generated project
 ├── .editorconfig
 ├── .eslintrc
 ├── .gitignore
+├── .travis.yml
 ├── README.md
 ├── cli.js
 ├── index.js
@@ -40,7 +41,34 @@ Generated with `tree -I node_modules -a` inside a generated project
 
 ## Available Tasks
 
-### 
+You can see the list of all available tasks running `npm run` on the generated project
+
+### `npm start`
+
+Alias for `npm test:watch`
+
+### `npm test`
+
+Executes the test located at `test/`
+
+### `npm run test:watch`
+
+Watches the content of `index.js`, `lib/` and `test/`, if any file changes `npm test` is executed
+
+### `npm run lint`
+
+Lints `index.js` and `lib/` (powered by http://eslint.org/docs/, also have a look at the generated `.eslintrc` file)
+
+### `npm run istanbul` (only when the mode codeCoverage is turned on)
+
+Executes the code coverage tool while running `mocha` on the `test/` directory, additionally when a
+build is triggered on [TravisCI](https://travis-ci.org) the lcov report will be sent to
+[Coveralls](https://coveralls.io/), also the code coverage badge is added to the README file
+
+### Useful npm commands that you should know
+
+- `npm version major|minor|patch` bumps the package version
+- `npm run` lists all available tasks
 
 ## Why?
 
@@ -61,9 +89,16 @@ while maintaining a very tiny configuration footprint."
 
 ### Inspiration projects
 
-- https://github.com/yeoman/generator-node/
+- https://github.com/yeoman/generator-node
 - https://github.com/youngmountain/generator-node-gulp
 - https://github.com/keithamus/npm-scripts-example's awesome `package.json` file
+
+## Development
+
+Run the tests with `npm test`
+
+Generate a sample output of the generator with `GENERATE_SANDBOX=true npm test`, generator options
+are on `test/config.js`
 
 ## License
 

@@ -9,6 +9,6 @@ install:
   - npm install
 
 test:
-  - npm lint<% if (config.coveralls) { %>
-  - npm coveralls<% } else { %>
+  - npm lint<% if (config.codeCoverage) { %>
+  - npm run istanbul && cat ./coverage/lcov.info | coveralls<% } else { %>
   - npm test<% } %>

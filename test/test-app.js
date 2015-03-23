@@ -57,20 +57,13 @@ describe('node-npm:app', function () {
     it('has the required contents (.travis.yml)', function () {
       var pkg = fs.readFileSync('.travis.yml', 'utf-8');
       assert( /npm\stest/.test(pkg) );
-      assert( !/npm\scoveralls/.test(pkg) );
+      assert( !/istanbul/.test(pkg) );
     });
 
     it('has the required contents (README.md)', function () {
       var pkg = fs.readFileSync('README.md', 'utf-8');
       assert( !/CLI/.test(pkg) );
       assert( !/Coverage\sStatus/.test(pkg) );
-    });
-
-    it('does not have coveralls config', function () {
-      var pkg = fs.readFileSync('package.json', 'utf-8');
-      pkg = JSON.parse(pkg);
-      assert(!pkg.scripts.hasOwnProperty('istanbul'));
-      assert(!pkg.scripts.hasOwnProperty('coveralls'));
     });
   });
 
@@ -110,7 +103,7 @@ describe('node-npm:app', function () {
 
   describe('with coveralls', function () {
     var opts = {
-      coveralls: true
+      codeCoverage: true
     };
 
     before(function (done) {
@@ -124,14 +117,20 @@ describe('node-npm:app', function () {
     it('has the required contents (README.md)', function () {
       var pkg = fs.readFileSync('README.md', 'utf-8');
       assert( !/CLI/.test(pkg) );
+      assert( /Coverage\sStatus/.test(pkg) );
+    });
+
+    it('has the required contents (.travis.yml)', function () {
+      var pkg = fs.readFileSync('.travis.yml', 'utf-8');
+      assert( !/npm\stest/.test(pkg) );
+      assert( /istanbul/.test(pkg) );
     });
 
     it('has the required contents (package.json)', function () {
       var pkg = fs.readFileSync('package.json', 'utf-8');
       pkg = JSON.parse(pkg);
+      assert(pkg.devDependencies.hasOwnProperty('istanbul'));
       assert(pkg.scripts.hasOwnProperty('istanbul'));
-      assert(pkg.scripts.hasOwnProperty('coveralls:report'));
-      assert(pkg.scripts.hasOwnProperty('coveralls'));
     });
   });
 });

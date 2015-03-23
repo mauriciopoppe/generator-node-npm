@@ -3,6 +3,7 @@
 var path = require('path');
 var helpers = require('yeoman-generator').test;
 var config = require('./config');
+var extend = require('extend');
 
 process.env.GENERATE_SANDBOX && describe('node-npm on sandbox', function () {
   this.timeout(60000);
@@ -11,7 +12,10 @@ process.env.GENERATE_SANDBOX && describe('node-npm on sandbox', function () {
     helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, '.tmp'))
       .withOptions({ 'skip-install': false })
-      .withPrompt(config.simple)
+      .withPrompt(extend({}, config.simple, {
+        cli: true,
+        coveralls: true
+      }))
       .on('end', done);
   });
 

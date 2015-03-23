@@ -1,4 +1,4 @@
-# <%= slugname %> [![Build Status][travis-image]][travis-url] <% if (config.coveralls) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %>
+# <%= slugname %> [![Build Status][travis-image]][travis-url] <% if (config.codeCoverage) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %>
 
 [![NPM][npm-image]][npm-url]
 
@@ -21,8 +21,7 @@ var <%= safeSlugname %> = require('<%= slugname %>');
 ```sh
 $ npm install --global <%= slugname %>
 $ <%= slugname %> --help
-```
-<% } %>
+```<% } %>
 
 ## API
 

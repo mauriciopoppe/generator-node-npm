@@ -139,14 +139,14 @@ module.exports = yeoman.generators.Base.extend({
         default: false
       }, {
         type: 'confirm',
-        name: 'coveralls',
+        name: 'codeCoverage',
         message: 'Do you need a code coverage tool? (Powered by istanbul + coveralls)',
         default: false
       }];
       this.prompt(prompts, function (props) {
         this.config = {};
         this.config.cli = props.cli;
-        this.config.coveralls = props.coveralls;
+        this.config.codeCoverage = props.codeCoverage;
         done();
       }.bind(this));
     }
