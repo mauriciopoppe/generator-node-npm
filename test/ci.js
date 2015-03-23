@@ -38,7 +38,7 @@ process.env.CI && describe('node-npm on CI', function () {
     });
   });
 
-  describe('with ci', function () {
+  describe('with cli', function () {
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
