@@ -14,7 +14,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha test/",
+    "lint": "eslint app test --ignore-path app/templates/index.js app/templates/cli.js"
   },
   "files": [
     "app"

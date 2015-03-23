@@ -19,13 +19,13 @@ var path = require('path');
         authorEmail
         authorUrl
         keywords {Array}
+      config
         cli {boolean}
         browser {boolean}
         coveralls {boolean}
  */
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
-    var me = this;
     this.pkg = require('../package.json');
     this.currentYear = new Date().getFullYear();
     this.currentDate = new Date().toISOString().slice(0,10); // YYY-MM-DD
@@ -115,7 +115,7 @@ module.exports = yeoman.generators.Base.extend({
           this.repoUrl = 'user/repo';
         }
 
-        this.keywords = props.keywords.split(',')
+        this.keywords = (props.keywords || '').split(',')
           .map(function (el) {
             return el.trim();
           })
@@ -135,21 +135,18 @@ module.exports = yeoman.generators.Base.extend({
       var prompts = [{
         type: 'confirm',
         name: 'cli',
-        message: 'Do you need a CLI?'
-      }, {
-        type: 'confirm',
-        name: 'browser',
-        message: 'Do you need to use Browserify?'
+        message: 'Do you need a CLI?',
+        default: false
       }, {
         type: 'confirm',
         name: 'coveralls',
         message: 'Do you need a code coverage tool? (Powered by istanbul + coveralls)',
-        default: true
+        default: false
       }];
       this.prompt(prompts, function (props) {
-        this.props.cli = props.cli;
-        this.props.browser = props.browser;
-        this.props.coveralls = props.coveralls;
+        this.config = {};
+        this.config.cli = props.cli;
+        this.config.coveralls = props.coveralls;
         done();
       }.bind(this));
     }
@@ -187,13 +184,14 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('eslintrc'),
         this.destinationPath('.eslintrc')
       );
-      this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
+        this
+      );
+      this.fs.copyTpl(
+        this.templatePath('_travis.yml'),
+        this.destinationPath('.travis.yml'),
         this
       );
       this.fs.copyTpl(
@@ -204,28 +202,11 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     cliFiles: function () {
-      if (this.props.cli) {
+      if (this.config.cli) {
         this.fs.copyTpl(
-          this.templatePath('bin/cli.js'),
-          this.destinationPath('bin/' + this.slugname),
+          this.templatePath('cli.js'),
+          this.destinationPath('cli.js'),
           this
-        );
-      }
-    },
-
-    browserifyFiles: function () {
-      if (this.props.browser) {
-        this.fs.copy(
-          this.templatePath('assets/'),
-          this.destinationPath('assets/')
-        );
-        this.fs.copy(
-          this.templatePath('dist/'),
-          this.destinationPath('dist/')
-        );
-        this.fs.copy(
-          this.templatePath('index.html'),
-          this.destinationPath('index.html')
         );
       }
     }

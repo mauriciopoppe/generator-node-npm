@@ -9,56 +9,36 @@
   "author": "<%= props.authorName %> <<%= props.authorEmail %>>",
   "files": [
     "index.js",
-    "lib",<% if (props.cli) { %>
-    "bin",<% } %>
+    "lib",
     "LICENSE"
   ],
   "repository": {
     "type": "git",
     "url": "<%= repoUrl %>"
-  },<% if (props.cli) { %>
-  "bin": "./bin/<%= slugname %>",<% } %>
+  },<% if (config.cli) { %>
+  "bin": "./cli.js",<% } %>
   "keywords": [
     "<%= slugname %>"<% for (var i = 0; i < keywords.length; i++) { %>,
     "<%= keywords[i] %>"<% } %>
   ],
-  "dependencies": {<% if (props.cli) { %>
+  "dependencies": {<% if (config.cli) { %>
     "meow": "^3.1.0"<% } %>
   },
-  "devDependencies": {<% if (props.browser) { %>
-    "browserify": "^9.0.3",
-    "minifyify": "^6.1.1",
-    "watchify": "^0.1.0",
-    "browser-sync": "^2.3.1",
-    "catw": "^0.2.0",<% } %><% if (props.coveralls) { %>
+  "devDependencies": {<% if (config.coveralls) { %>
     "mocha-lcov-reporter": "^0.0.2",
     "istanbul": "^0.3.8",
     "coveralls": "^2.11.2",<% } %>
+    "nodemon": "^1.3.7",
     "eslint": "^0.17.1",
     "mocha": "^2.2.1"
   },
-  "scripts": {<% if (props.coveralls) { %>
-    "istanbul": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec test/**/*",
-    "coveralls-report": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf ./coverage",
+  "scripts": {<% if (config.coveralls) { %>
+    "istanbul": "istanbul cover _mocha --report lcovonly -- -R spec test/",
+    "coveralls:report": "cat ./coverage/lcov.info | coveralls",
     "coveralls": "npm run istanbul && npm run coveralls-report",<% } %>
-    <% if (props.browser) { %>
-
-    "build-js": "browserify -d assets/main.js -p [minifyify --compress-path . --map bundle.js.map --output dist/bundle.js.map] > dist/bundle.js",
-    "build-css": "cat assets/styles/*.css > dist/bundle.css",
-    "build": "npm -s run build-js && npm -s run build-css",
-
-    "watch-js": "watchify assets/main.js -o dist/bundle.js -dv",
-    "watch-css": "catw assets/styles/*.css -o dist/bundle.css -v",
-    "watch": "npm -s run watch-js & npm -s run watch-css",
-
-    "lint-browser": "eslint assets/main.js assets/scripts/",
-
-    "serve": "./node_modules/.bin/browser-sync start --files \"dist/*.css\" --server",
-    <% } %>
-    "lint": "eslint index.js lib test<% if (props.browser) { %> & npm run lint-browser<% } %>",
-
-    "test": "mocha -R spec test/**/*",
-
+    "lint": "eslint index.js lib test",
+    "test": "mocha -R spec test/",
+    "test:watch": "nodemon --watch lib --watch test --watch index.js --exec 'npm run istanbul'",
     "start": "node index.js"
   }
 }

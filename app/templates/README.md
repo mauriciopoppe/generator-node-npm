@@ -1,4 +1,4 @@
-# <%= slugname %> [![Build Status][travis-image]][travis-url] <% if (props.coveralls) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %>
+# <%= slugname %> [![Build Status][travis-image]][travis-url] <% if (config.coveralls) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %>
 
 [![NPM][npm-image]][npm-url]
 
@@ -14,19 +14,15 @@ $ npm install --save <%= slugname %>
 
 ```js
 var <%= safeSlugname %> = require('<%= slugname %>');
-
 <%= safeSlugname %>('Rainbow');
-```<% if (props.cli) { %>
-
+```
+<% if (config.cli) { %>
+## CLI
 ```sh
 $ npm install --global <%= slugname %>
 $ <%= slugname %> --help
-```<% } %><% if (props.browser) { %>
-
-```sh
-# creates a browser.js
-$ npm run browser
-```<% } %>
+```
+<% } %>
 
 ## API
 
