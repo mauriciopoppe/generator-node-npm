@@ -33,7 +33,7 @@ Coming soon...
 
 [npm-image]: https://nodei.co/npm/<%= slugname %>.png?downloads=true
 [npm-url]: https://npmjs.org/package/<%= slugname %>
-[travis-image]: https://travis-ci.org/<%= props.githubUsername %>/<%= slugname %>.svg?branch=master
-[travis-url]: https://travis-ci.org/<%= props.githubUsername %>/<%= slugname %>
-[coveralls-image]: https://coveralls.io/repos/<%= props.githubUsername %>/<%= slugname %>/badge.svg
-[coveralls-url]: https://coveralls.io/r/<%= props.githubUsername %>/<%= slugname %>
+[travis-image]: https://travis-ci.org/<%= props.username %>/<%= slugname %>.svg?branch=master
+[travis-url]: https://travis-ci.org/<%= props.username %>/<%= slugname %>
+[coveralls-image]: https://coveralls.io/repos/<%= props.username %>/<%= slugname %>/badge.svg
+[coveralls-url]: https://coveralls.io/r/<%= props.username %>/<%= slugname %>
