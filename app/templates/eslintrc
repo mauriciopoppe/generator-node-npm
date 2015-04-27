@@ -34,6 +34,7 @@
     "rules": {
         "no-console": 0,                // disallow use of console (off by default in the node environment)
         "no-trailing-spaces": 0,        // disable throwing errors for trailing spaces
+        "no-unused-expressions": 0,     // disallow usage of expressions in statement position
         "quotes": [2, "single"],        // specify whether double or single quotes should be used
         "strict": [2, "global"],        // controls location of Use Strict Directives
         "no-unused-vars": [1, {

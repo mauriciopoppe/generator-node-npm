@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "mocha test/",
-    "lint": "eslint app test --ignore-path app/templates/index.js app/templates/cli.js"
+    "lint": "eslint app test"
   },
   "files": [
     "app"

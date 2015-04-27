@@ -15,7 +15,7 @@ process.env.CI && describe('node-npm on CI', function () {
 
   function handleProcess(command, done) {
     exec(command, function (err, stdout, stderr) {
-      if (err) return done(err);
+      if (err) { return done(err); }
       if (stderr) {
         return done(new Error(stderr));
       }
