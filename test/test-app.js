@@ -27,7 +27,6 @@ describe('node-npm:app', function () {
         'package.json',
         'README.md',
         '.editorconfig',
-        '.eslintrc',
         '.travis.yml',
         'index.js'
       ]);
