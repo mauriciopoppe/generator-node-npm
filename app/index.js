@@ -183,6 +183,10 @@ module.exports = yeoman.generators.Base.extend({
         this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
       );
+      this.fs.copy(
+        this.templatePath('eslintrc'),
+        this.destinationPath('.eslintrc')
+      );
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
