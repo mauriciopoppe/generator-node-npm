@@ -28,7 +28,7 @@ module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
     this.currentYear = new Date().getFullYear();
-    this.currentDate = new Date().toISOString().slice(0,10); // YYY-MM-DD
+    this.currentDate = new Date().toISOString().slice(0, 10); // YYY-MM-DD
   },
 
   prompting: {
@@ -50,13 +50,16 @@ module.exports = yeoman.generators.Base.extend({
         name: 'pkgName',
         message: 'The name above already exists on npm, choose another?',
         default: true,
-        when: function(answers) {
+        when: function (answers) {
           if (process.env.SKIP) {
             return false;
           }
 
           var done = this.async();
           npmName(answers.name, function (err, available) {
+            if (err) {
+              throw err;
+            }
             if (!available) {
               done(true);
               return;
