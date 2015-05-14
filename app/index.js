@@ -145,11 +145,17 @@ module.exports = yeoman.generators.Base.extend({
         name: 'codeCoverage',
         message: 'Do you need a code coverage tool? (Powered by istanbul + coveralls)',
         default: false
+      }, {
+        type: 'confirm',
+        name: 'dependencyManager',
+        message: 'Do you need a dependency manager tool? (Powered by david-dm.org)',
+        default: false
       }];
       this.prompt(prompts, function (props) {
         this.config = {};
         this.config.cli = props.cli;
         this.config.codeCoverage = props.codeCoverage;
+        this.config.dependencyManager = props.dependencyManager;
         done();
       }.bind(this));
     }

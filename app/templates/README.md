@@ -1,6 +1,8 @@
-# <%= slugname %> [![Build Status][travis-image]][travis-url]<% if (config.codeCoverage) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %>
+# <%= slugname %> 
 
 [![NPM][npm-image]][npm-url]
+
+[![Build Status][travis-image]][travis-url]<% if (config.codeCoverage) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %> <% if (config.dependencyManager) { %> [![Dependency Status][david-image]][david-url]<% } %>
 
 > <%= props.description %>
 
@@ -37,3 +39,5 @@ Coming soon...
 [travis-url]: https://travis-ci.org/<%= props.username %>/<%= slugname %>
 [coveralls-image]: https://coveralls.io/repos/<%= props.username %>/<%= slugname %>/badge.svg
 [coveralls-url]: https://coveralls.io/r/<%= props.username %>/<%= slugname %>
+[david-image]: https://david-dm.org/<%= props.username %>/<%= slugname %>.svg
+[david-url]: https://david-dm.org/<%= props.username %>/<%= slugname %>
