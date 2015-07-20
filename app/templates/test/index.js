@@ -1,11 +1,9 @@
-'use strict';
+'use strict'
 
-var assert = require('assert');
+var <%= safeSlugname %> = require('../')
+var test = require('tape')
 
-var <%= safeSlugname %> = require('../');
-
-describe('<%= safeSlugname %>', function () {
-  it('should be awesome', function () {
-    assert(<%= safeSlugname %>() === 'awesome');
-  });
-});
+test('awesome:test', function (t) {
+  t.ok(<%= safeSlugname %>() === 'awesome')
+  t.end()
+})

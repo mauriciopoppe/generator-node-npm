@@ -25,15 +25,11 @@ Generated with `yo node-npm` inside a new project (cli/codeCoverage modes turned
 
 ```
 .
-├── .editorconfig
-├── .eslintrc
-├── .gitignore
-├── .travis.yml
 ├── README.md
-├── cli.js
+├── bin (if required)
 ├── index.js
 ├── lib
-│   └── awesome.js
+│   └── <main file>.js
 ├── package.json
 └── test
     └── index.js
@@ -46,10 +42,10 @@ You can see the list of all available tasks running `npm run` on the generated p
 
 ```javascript
   "scripts": {
-    "istanbul": "istanbul cover _mocha --report lcovonly 2> /dev/null -- -R spec test/",
-    "lint": "eslint index.js lib test",
-    "test": "mocha -R spec test/",
-    "test:watch": "nodemon --watch lib --watch test --watch index.js --exec 'npm test'",
+    "istanbul": "istanbul cover test/index.js",
+    "lint": "standard",
+    "test": "node test/index.js | tap-spec",
+    "test:watch": "gaze 'npm test' 'test/**/*.js' 'lib/**/*.js' 'index.js'",
     "start": "npm run test:watch"
   }
 ```
@@ -64,11 +60,11 @@ Executes the test located at `test/`
 
 ### `npm run test:watch`
 
-Watches the content of `index.js`, `lib/` and `test/`, if any file changes `npm test` is executed
+Watches the content of `index.js`, `lib/` and `test/`, if the content of any file changes then `npm test` is executed
 
 ### `npm run lint`
 
-Lints `index.js` and `lib/` (powered by http://eslint.org/docs/, also have a look at the generated `.eslintrc` file)
+Lints `index.js, test/, lib/` (powered by [feross/standard](https://github.com/feross/standard))
 
 ### `npm run istanbul` (only when the mode codeCoverage is turned on)
 
@@ -107,9 +103,6 @@ while maintaining a very tiny configuration footprint."
 ## Development
 
 Run the tests with `npm test`
-
-Generate a sample output of the generator with `GENERATE_SANDBOX=true npm test` (example project is saved under
-`test/.tmp`), the generator options are on `test/config.js`
 
 ## License
 

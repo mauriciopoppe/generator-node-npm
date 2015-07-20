@@ -5,10 +5,6 @@
  * Licensed under the <%= props.license %> license.
  */
 
-'use strict';
+'use strict'
 
-var awesome = require('./lib/awesome');
-
-module.exports = function () {
-  return awesome();
-};
+module.exports = require('./lib/<%= slugname %>')

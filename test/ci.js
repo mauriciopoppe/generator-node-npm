@@ -9,6 +9,8 @@ var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
 var exec = require('child_process').exec;
+var extend = require('extend');
+var config = require('./config');
 
 process.env.CI && describe('node-npm on CI', function () {
   this.timeout(60000);
@@ -28,47 +30,47 @@ process.env.CI && describe('node-npm on CI', function () {
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
         .withOptions({ 'skip-install': false })
-        .withPrompt({})
+        .withPrompt(extend(config, { cli: true, codeCoverage: true }))
         .on('end', done);
     });
 
     it('executes some required scripts', function (done) {
-      var command = 'npm run lint && npm run test';
+      var command = 'npm run lint && npm test';
       handleProcess(command, done);
     });
   });
 
-  describe('with cli', function () {
-    before(function (done) {
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './temp-test'))
-        .withOptions({ 'skip-install': false })
-        .withPrompt({
-          cli: true
-        })
-        .on('end', done);
-    });
-
-    it('executes some required scripts', function (done) {
-      var command = 'npm run lint && npm run test && chmod u+x ./cli.js && ./cli.js';
-      handleProcess(command, done);
-    });
-  });
-
-  describe('with codeCoverage', function () {
-    before(function (done) {
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './temp-test'))
-        .withOptions({ 'skip-install': false })
-        .withPrompt({
-          codeCoverage: true
-        })
-        .on('end', done);
-    });
-
-    it('executes some required scripts', function (done) {
-      var command = 'npm run istanbul';
-      handleProcess(command, done);
-    });
-  });
+  //describe('with cli', function () {
+  //  before(function (done) {
+  //    helpers.run(path.join(__dirname, '../app'))
+  //      .inDir(path.join(os.tmpdir(), './temp-test'))
+  //      .withOptions({ 'skip-install': false })
+  //      .withPrompt({
+  //        cli: true
+  //      })
+  //      .on('end', done);
+  //  });
+  //
+  //  it('executes some required scripts', function (done) {
+  //    var command = 'npm run lint && npm run test && chmod u+x ./cli.js && ./cli.js';
+  //    handleProcess(command, done);
+  //  });
+  //});
+  //
+  //describe('with codeCoverage', function () {
+  //  before(function (done) {
+  //    helpers.run(path.join(__dirname, '../app'))
+  //      .inDir(path.join(os.tmpdir(), './temp-test'))
+  //      .withOptions({ 'skip-install': false })
+  //      .withPrompt({
+  //        codeCoverage: true
+  //      })
+  //      .on('end', done);
+  //  });
+  //
+  //  it('executes some required scripts', function (done) {
+  //    var command = 'npm run istanbul';
+  //    handleProcess(command, done);
+  //  });
+  //});
 });

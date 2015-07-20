@@ -5,19 +5,11 @@
 node_modules
 npm-debug.log
 
-# Coverage directory used by tools like istanbul
-coverage
-
-
 ### WebStorm ###
-## Directory-based project format:
 .idea/
 
-## File-based project format:
-*.iml
-*.ipr
-*.iws
-
+### Coverage ###
+/coverage/
 
 ### SublimeText ###
 # cache files for sublime text
@@ -34,12 +26,3 @@ coverage
 
 # sftp configuration file
 sftp-config.json
-
-
-### Vim ###
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
-*.un~
-Session.vim
-.netrwhist
-*~

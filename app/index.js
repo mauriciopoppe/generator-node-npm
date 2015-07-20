@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var npmName = require('npm-name');
 var path = require('path');
+var spawn = require('cross-spawn');
 
 /*
       stored in the generator instance:
@@ -145,17 +146,11 @@ module.exports = yeoman.generators.Base.extend({
         name: 'codeCoverage',
         message: 'Do you need a code coverage tool? (Powered by istanbul + coveralls)',
         default: false
-      }, {
-        type: 'confirm',
-        name: 'dependencyManager',
-        message: 'Do you need a dependency manager tool? (Powered by david-dm.org)',
-        default: false
       }];
       this.prompt(prompts, function (props) {
         this.config = {};
         this.config.cli = props.cli;
         this.config.codeCoverage = props.codeCoverage;
-        this.config.dependencyManager = props.dependencyManager;
         done();
       }.bind(this));
     }
@@ -175,7 +170,7 @@ module.exports = yeoman.generators.Base.extend({
       );
       this.fs.copyTpl(
         this.templatePath('lib/awesome.js'),
-        this.destinationPath('lib/awesome.js'),
+        this.destinationPath('lib/' + this.slugname + '.js'),
         this
       );
     },
@@ -188,10 +183,6 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copy(
         this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
-      );
-      this.fs.copy(
-        this.templatePath('eslintrc'),
-        this.destinationPath('.eslintrc')
       );
       this.fs.copyTpl(
         this.templatePath('_package.json'),
@@ -213,8 +204,8 @@ module.exports = yeoman.generators.Base.extend({
     cliFiles: function () {
       if (this.config.cli) {
         this.fs.copyTpl(
-          this.templatePath('cli.js'),
-          this.destinationPath('cli.js'),
+          this.templatePath('bin/cli.js'),
+          this.destinationPath('bin/' + this.safeSlugname),
           this
         );
       }
@@ -226,5 +217,8 @@ module.exports = yeoman.generators.Base.extend({
       bower: false,
       skipInstall: this.options['skip-install']
     });
+    //spawn.sync('git', ['init'], { stdio: 'inherit' });
+    //spawn.sync('git', ['add', '.'], { stdio: 'inherit' });
+    //spawn.sync('git', ['commit', '-m', 'initial commit'], { stdio: 'inherit' });
   }
 });

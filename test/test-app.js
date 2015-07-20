@@ -5,6 +5,7 @@ var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
+var extend = require('extend');
 var config = require('./config');
 
 describe('node-npm:app', function () {
@@ -22,17 +23,13 @@ describe('node-npm:app', function () {
 
     it('creates files', function () {
       assert.file([
-        'lib/awesome.js',
+        'lib/generator-node-npm.js',
         'test/index.js',
         'package.json',
         'README.md',
-        '.eslintrc',
         '.editorconfig',
         '.travis.yml',
         'index.js'
-      ]);
-      assert.noFile([
-        'cli.js'
       ]);
     });
 
@@ -69,15 +66,11 @@ describe('node-npm:app', function () {
 
   describe('with cli', function () {
     var instance;
-    var opts = {
-      cli: true
-    };
-
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
         .withOptions({ 'skip-install': true })
-        .withPrompt(opts)
+        .withPrompt(extend({}, config.simple, { cli: true }))
         .on('ready', function (generator) {
           instance = generator;
         })
@@ -85,7 +78,7 @@ describe('node-npm:app', function () {
     });
 
     it('creates files', function () {
-      assert.file(['cli.js']);
+      assert.file(['bin/generatorNodeNpm']);
     });
 
     it('has the required contents (README.md)', function () {
@@ -97,20 +90,17 @@ describe('node-npm:app', function () {
       var pkg = fs.readFileSync('package.json', 'utf-8');
       pkg = JSON.parse(pkg);
       assert(pkg.hasOwnProperty('bin'));
-      assert(pkg.dependencies.hasOwnProperty('meow'));
+      assert(pkg.dependencies.hasOwnProperty('yargs'));
     });
   });
 
   describe('with coveralls', function () {
-    var opts = {
-      codeCoverage: true
-    };
 
     before(function (done) {
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './temp-test'))
         .withOptions({ 'skip-install': true })
-        .withPrompt(opts)
+        .withPrompt(extend({}, config.simple, { codeCoverage: true}))
         .on('end', done);
     });
 
