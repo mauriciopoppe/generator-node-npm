@@ -27,10 +27,10 @@
     "chalk": "^1.0.0",
     "npm-name": "^1.0.4",
     "yeoman-generator": "^0.18.9",
-    "yosay": "^1.0.2"
+    "yosay": "^1.0.2",
+    "cross-spawn": "^1.0.4"
   },
   "devDependencies": {
-    "cross-spawn": "^1.0.4",
     "extend": "^2.0.0",
     "mocha": "*"
   }
