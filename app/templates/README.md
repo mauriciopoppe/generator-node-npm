@@ -38,3 +38,4 @@ Coming soon...
 ## License
 
 <%= currentYear %> <%= props.license %> © [<%= props.authorName %>](<%= props.authorUrl %>)
+* project generated with [maurizzzio/generator-node-npm](https://github.com/maurizzzio/generator-node-npm) *

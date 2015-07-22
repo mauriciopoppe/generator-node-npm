@@ -56,7 +56,7 @@ Alias for `npm test:watch`
 
 ### `npm test`
 
-Executes the test located at `test/`
+Executes the tests located in `test/index.js`, powered by [substack/tape](https://github.com/substack/tape)
 
 ### `npm run test:watch`
 
@@ -68,9 +68,9 @@ Lints `index.js, test/, lib/` (powered by [feross/standard](https://github.com/f
 
 ### `npm run istanbul` (only when the mode codeCoverage is turned on)
 
-Executes the code coverage tool while running `mocha` on the `test/` directory, additionally when a
-build is triggered on [TravisCI](https://travis-ci.org) the lcov report will be sent to
-[Coveralls](https://coveralls.io/), also the code coverage badge is added to the README file
+Generates a coverage report of the files tested by `test/index.js`, additionally when a
+build is triggered on [TravisCI](https://travis-ci.org) the coverage report will be sent to
+[Coveralls](https://coveralls.io/)
 
 ### Useful npm commands that you should know
 
