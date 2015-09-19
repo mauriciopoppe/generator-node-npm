@@ -1,6 +1,6 @@
 # <%= slugname %> 
 
-[![Build Status][travis-image]][travis-url] [![npm][npm-image]][npm-url] <% if (config.codeCoverage) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %>
+[![npm][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] <% if (config.codeCoverage) { %> [![Coverage Status][coveralls-image]][coveralls-url]<% } %>
 
 [travis-image]: https://travis-ci.org/<%= props.username %>/<%= slugname %>.svg?branch=master
 [travis-url]: https://travis-ci.org/<%= props.username %>/<%= slugname %>
@@ -38,4 +38,3 @@ Coming soon...
 ## License
 
 <%= currentYear %> <%= props.license %> © [<%= props.authorName %>](<%= props.authorUrl %>)
-* project generated with [maurizzzio/generator-node-npm](https://github.com/maurizzzio/generator-node-npm) *

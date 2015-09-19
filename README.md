@@ -98,11 +98,22 @@ while maintaining a very tiny configuration footprint."
 
 - https://github.com/yeoman/generator-node
 - https://github.com/youngmountain/generator-node-gulp
-- https://github.com/keithamus/npm-scripts-example's awesome `package.json` file
+- https://github.com/keithamus/npm-scripts-example 's awesome `package.json` file
 
 ## Development
 
 Run the tests with `npm test`
+
+## FAQ
+
+### The generator fails if there's no internet connection, why?
+
+The generator uses the package [npm-name](https://www.npmjs.com/package/npm-name) to check whether the package
+name is available on npm, to disable the check define the env variable `SKIP`
+
+```sh
+SKIP=true yo node-npm
+```
 
 ## License
 
