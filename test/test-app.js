@@ -8,14 +8,19 @@ var os = require('os');
 var extend = require('extend');
 var config = require('./config');
 
+
+function runGenerator() {
+  return helpers.run(path.join(__dirname, '../app'))
+    .inDir(path.join(__dirname, '.tmp'))
+}
+
 describe('node-npm:app', function () {
   describe('with default options', function () {
     before(function (done) {
       // skips the npmName check
       process.env.SKIP = true;
 
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './temp-test'))
+      runGenerator()
         .withOptions({ 'skip-install': true })
         .withPrompt(config.simple)
         .on('end', done);
@@ -53,7 +58,6 @@ describe('node-npm:app', function () {
 
     it('has the required contents (.travis.yml)', function () {
       var pkg = fs.readFileSync('.travis.yml', 'utf-8');
-      assert( /npm\stest/.test(pkg) );
       assert( !/istanbul/.test(pkg) );
     });
 
@@ -67,8 +71,7 @@ describe('node-npm:app', function () {
   describe('with cli', function () {
     var instance;
     before(function (done) {
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './temp-test'))
+      runGenerator()
         .withOptions({ 'skip-install': true })
         .withPrompt(extend({}, config.simple, { cli: true }))
         .on('ready', function (generator) {
@@ -97,8 +100,7 @@ describe('node-npm:app', function () {
   describe('with coveralls', function () {
 
     before(function (done) {
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './temp-test'))
+      runGenerator()
         .withOptions({ 'skip-install': true })
         .withPrompt(extend({}, config.simple, { codeCoverage: true}))
         .on('end', done);

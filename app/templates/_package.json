@@ -4,9 +4,9 @@
   "description": "<%= props.description %>",<% if (props.homepage) { %>
   "homepage": "<%= props.homepage %>",<%}%>
   "bugs": "<%= repoUrl %>/issues",
+  "author": "<%= props.authorName %> <<%= props.authorEmail %>>",
   "license": "<%= props.license %>",
   "main": "index.js",
-  "author": "<%= props.authorName %> <<%= props.authorEmail %>>",
   "files": [
     "index.js",
     "lib",
@@ -32,7 +32,9 @@
     "gaze-cli": "^0.2.0",
     "standard": "^4.5.0"
   },
-  "scripts": {<% if (config.codeCoverage) { %>
+  "scripts": {
+    "prepublish": "npm run lint && npm test",
+    <% if (config.codeCoverage) { %>
     "istanbul": "istanbul cover test/index.js",<% } %>
     "lint": "standard",
     "test": "node test/index.js | tap-spec",

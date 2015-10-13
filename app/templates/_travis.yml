@@ -3,10 +3,9 @@ env: CI=true
 sudo: false
 
 node_js:
-  - '0.10'
-
-install:
-  - npm install
+  - 0.10
+  - 0.12
+  - 4
 
 script:
   - npm run lint<% if (config.codeCoverage) { %>

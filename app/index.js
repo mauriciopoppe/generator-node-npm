@@ -109,6 +109,10 @@ module.exports = yeoman.generators.Base.extend({
         message: 'Author\'s Email',
         store: true
       }, {
+        name: 'authorUrl',
+        message: 'Author\'s Homepage',
+        store: true
+      }, {
         name: 'keywords',
         message: 'Key your keywords (comma to split)'
       }];
